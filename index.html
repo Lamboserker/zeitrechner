@@ -1,0 +1,70 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arbeitszeit-Zuschlagsrechner</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Chart.js einbinden -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <h1>Arbeitszeit-Zuschlagsrechner</h1>
+    <button type="button" id="darkModeBtn">Wechsel zu Dunkelmodus</button>
+    <form id="arbeitszeitForm">
+        <label>Startdatum: <input type="date" id="startDate" required></label>
+        <label>Enddatum: <input type="date" id="endDate" required></label>
+
+        <label>Bundesland:
+            <select id="bundesland">
+                <option value="NW">Nordrhein‑Westfalen</option>
+                <option value="BY">Bayern</option>
+                <option value="BE">Berlin</option>
+                <!-- … weitere Bundesländer … -->
+            </select>
+        </label>
+
+        <fieldset>
+            <legend>Arbeitszeiten</legend>
+            <div>
+                <label>Werktag: <input type="time" id="wd_start"> bis <input type="time" id="wd_end"></label>
+            </div>
+            <div>
+                <label>Samstag: <input type="time" id="sa_start"> bis <input type="time" id="sa_end"></label>
+            </div>
+            <div>
+                <label>Sonntag: <input type="time" id="so_start"> bis <input type="time" id="so_end"></label>
+            </div>
+            <div>
+                <label>Feiertag: <input type="time" id="ft_start"> bis <input type="time" id="ft_end"></label>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Nachtarbeitsfenster</legend>
+            <label>Beginn: <input type="time" id="night_start" value="23:00"></label>
+            <label>Ende: <input type="time" id="night_end" value="06:00"></label>
+        </fieldset>
+
+        <button type="submit">Berechnen</button>
+    </form>
+
+    <div id="output"></div>
+    <!-- NEU: Chart-Container -->
+    <h2>Stunden‑Verteilung</h2>
+    <canvas id="stundenChart" width="400" height="400"></canvas>
+
+    <!-- Deine Konfiguration muss VOR script.js geladen werden -->
+    <script src="config.js"></script>
+    <!-- anschließend alle anderen Hilfs‑Skripte -->
+    <script src="utils/date.js"></script>
+    <script src="utils/feiertage.js"></script>
+    <!-- ganz zum Schluss dein Haupt‑Skript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
